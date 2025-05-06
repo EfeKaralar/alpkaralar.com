@@ -1,10 +1,716 @@
-<html xmlns="http://www.w3.org/1999/xhtml" >
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>Alp Efe Karalar</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name - Computer Engineer</title>
+    <style>
+        :root {
+            --primary: #1E407C; /* Penn State Blue */
+            --secondary: #FFFFFF;
+            --accent: #FFB81C; /* Penn State Gold */
+            --text: #333333;
+            --background: #f5f5f5;
+            --card-bg: #ffffff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--primary);
+            color: var(--secondary);
+            padding: 2rem 0;
+            text-align: center;
+            position: relative;
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .profile-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+        
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 4px solid var(--accent);
+            object-fit: cover;
+            background-color: #ddd; /* Placeholder */
+        }
+        
+        nav {
+            background-color: var(--primary);
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style-type: none;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        nav ul li {
+            margin: 0 1.5rem;
+        }
+        
+        nav ul li a {
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--accent);
+        }
+        
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        section {
+            margin-bottom: 3rem;
+            scroll-margin-top: 5rem;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+        
+        .tagline {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            font-weight: 300;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background-color: var(--accent);
+            color: var(--primary);
+            border-radius: 50%;
+            text-decoration: none;
+            font-size: 1.5rem;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+        
+        .social-links a:hover {
+            transform: scale(1.1);
+            background-color: var(--secondary);
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+        
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .skill-tag {
+            background-color: var(--primary);
+            color: var(--secondary);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .timeline {
+            position: relative;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            width: 2px;
+            background-color: var(--primary);
+            top: 0;
+            bottom: 0;
+            left: 0;
+        }
+        
+        .timeline-item {
+            margin-bottom: 2rem;
+            padding-left: 2rem;
+            position: relative;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background-color: var(--accent);
+            border: 2px solid var(--primary);
+            left: -8px;
+            top: 5px;
+        }
+        
+        .timeline-date {
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .timeline-title {
+            font-size: 1.2rem;
+            margin: 0.5rem 0;
+        }
+        
+        .timeline-company {
+            font-style: italic;
+            margin-bottom: 0.5rem;
+        }
+        
+        .projects-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .project-card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .project-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            background-color: #ddd; /* Placeholder */
+        }
+        
+        .project-content {
+            padding: 1.5rem;
+        }
+        
+        .project-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        
+        .project-tag {
+            background-color: var(--primary);
+            color: var(--secondary);
+            padding: 0.2rem 0.7rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+        
+        .blog-posts {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .blog-card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .blog-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            background-color: #ddd; /* Placeholder */
+        }
+        
+        .blog-content {
+            padding: A1.5rem;
+        }
+        
+        .blog-date {
+            color: var(--primary);
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+        
+        .blog-title {
+            font-size: 1.3rem;
+            margin: 0.5rem 0;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: var(--primary);
+            color: var(--secondary);
+            padding: 0.7rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+        
+        .cta-button:hover {
+            background-color: var(--accent);
+        }
+        
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            background-color: var(--primary);
+            color: var(--secondary);
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .submit-btn:hover {
+            background-color: var(--accent);
+        }
+        
+        footer {
+            background-color: var(--primary);
+            color: var(--secondary);
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 1.5rem 0;
+        }
+        
+        .footer-links a {
+            color: var(--secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+        
+        /* Media Queries */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+            
+            nav ul li {
+                margin: 0;
+            }
+            
+            .projects-container,
+            .blog-posts {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (min-width: 768px) {
+            .about-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-  <h1>Welcome to my website</h1>
-  <p> WEBSITE CURRENTLY UNDER CONSTRUCTION! <p>
-  <p>Now hosted on GitHub Pages!</p>
+    <header>
+        <div class="header-content">
+            <div class="profile-container">
+                <img src="/api/placeholder/150/150" alt="Alp Efe Karalar" class="profile-image">
+            </div>
+            <h1>Alp Efe Karalar</h1>
+            <p class="tagline">Computer Engineering Graduate • Full-Stack Developer • Penn State Alumni</p>
+            <div class="social-links">
+                <a href="https://github.com/EfeKaralar" title="GitHub">GH</a>
+                <a href="https://linkedin.com/in/alp-efe-karalar" title="LinkedIn">LI</a>
+                <a href="#" title="Devpost">DP</a>
+                <a href="#" title="YouTube">YT</a>
+                <a href="#" title="DementiAnalytics">DA</a>
+            </div>
+        </div>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#blog">Blog</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+    
+    <main>
+        <section id="about">
+            <h2>About Me</h2>
+            <div class="about-content">
+                <div class="card">
+                    <p>Hello! I'm a recent Computer Engineering graduate from Penn State University with experience in machine learning, embedded systems, and operating systems. Currently, I work at DementiAnalytics as Head of Machine Learning where I focus on developing AI-powered dementia detection and assessment technology.</p>
+                    <p>I enjoy tackling complex problems and creating elegant solutions through code. My background in computer engineering has equipped me with strong analytical skills and a deep understanding of both hardware and software systems.</p>
+                    <p>I'm passionate about leveraging technology to solve meaningful problems, especially in healthcare and autonomous systems.</p>
+                    <a href="#contact" class="cta-button">Get In Touch</a>
+                </div>
+                <div class="card">
+                    <h3>Education</h3>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <p class="timeline-date">2020 - 2024</p>
+                            <h4 class="timeline-title">B.S. in Computer Engineering</h4>
+                            <p class="timeline-company">Pennsylvania State University</p>
+                            <p>Dean's List: FA20, SP21, FA21, SU23</p>
+                            <p>Awards: Defne-Muhtar Kent Scholarship</p>
+                            <p>Relevant coursework: Communication Networks, Computer Architecture, Data Structures & Algorithms, Digital Design, Digital Image Processing, Exploratory Data Mining, Neural Networks, Operating Systems Design & Construction</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="skills">
+            <h2>Skills</h2>
+            <div class="card">
+                <h3>Languages</h3>
+                <div class="skills-container">
+                    <span class="skill-tag">C/C++</span>
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">Bash</span>
+                    <span class="skill-tag">Java</span>
+                    <span class="skill-tag">JavaScript</span>
+                    <span class="skill-tag">Kotlin</span>
+                    <span class="skill-tag">C#</span>
+                    <span class="skill-tag">SQL</span>
+                    <span class="skill-tag">Verilog</span>
+                    <span class="skill-tag">MATLAB</span>
+                </div>
+                
+                <h3 style="margin-top: 1.5rem;">Technologies</h3>
+                <div class="skills-container">
+                    <span class="skill-tag">LLM-Integration</span>
+                    <span class="skill-tag">AWS</span>
+                    <span class="skill-tag">PyTorch</span>
+                    <span class="skill-tag">NumPy</span>
+                    <span class="skill-tag">.NET</span>
+                    <span class="skill-tag">Android Studio</span>
+                    <span class="skill-tag">Linux</span>
+                    <span class="skill-tag">Embedded Systems</span>
+                    <span class="skill-tag">React</span>
+                    <span class="skill-tag">Docker</span>
+                </div>
+            </div>
+        </section>
+        
+        <section id="experience">
+            <h2>Work Experience</h2>
+            <div class="card">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <p class="timeline-date">February 2025 - Present</p>
+                        <h4 class="timeline-title">Head of Machine Learning</h4>
+                        <p class="timeline-company">DementiAnalytics – State College, PA</p>
+                        <p>• Leading machine learning initiatives to develop AI-powered dementia detection and assessment technology, focusing on processing and analyzing audio/text samples with Whisper AI and in-house LLMs</p>
+                        <p>• Architecting neural network models that identify cognitive impairment indicators from speech patterns</p>
+                        <p>• Collaborating with cross-functional teams to integrate AI solutions, ensuring alignment with clinical requirements</p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <p class="timeline-date">January 2024 - December 2024</p>
+                        <h4 class="timeline-title">Software Engineer</h4>
+                        <p class="timeline-company">Advanced Vehicle Team – University Park, PA</p>
+                        <p>• Engineered sophisticated computer vision algorithms for self-driving cars, leveraging Python and YOLO models</p>
+                        <p>• Achieved 3rd place for the "Overall Year 3 Winners" in the Auto Drive Challenge II, backed by GM & SAE International</p>
+                        <p>• Optimized FLIR camera image processing, achieving a 50% increase in object detection accuracy by enhancing the algorithm</p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <p class="timeline-date">July 2023 - October 2023</p>
+                        <h4 class="timeline-title">Software Engineer Co-op</h4>
+                        <p class="timeline-company">Bakkal Co. – Pleasanton, CA</p>
+                        <p>• Leveraged Agile methodologies to collaborate in SCRUM sprints for optimizing BAKKAL's ethnic food delivery applications</p>
+                        <p>• Enhanced the performance and features of BAKKAL's mobile applications through proficient use of Java and Android Studio</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="projects">
+            <h2>Projects</h2>
+            <div class="projects-container">
+                <div class="project-card">
+                    <img src="/api/placeholder/300/180" alt="ResearchTLDR.xyz" class="project-img">
+                    <div class="project-content">
+                        <h3 class="project-title">ResearchTLDR.xyz</h3>
+                        <p>A full-stack academic research platform that processes complex scientific papers into comprehensive, structured summaries using multiple LLM providers.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Python</span>
+                            <span class="project-tag">React</span>
+                            <span class="project-tag">FastAPI</span>
+                            <span class="project-tag">PostgreSQL</span>
+                            <span class="project-tag">LLMs</span>
+                        </div>
+                        <div style="margin-top: 1rem;">
+                            <a href="https://researchtldr.xyz" class="cta-button">View Project</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <img src="/api/placeholder/300/180" alt="Music Generation RNN" class="project-img">
+                    <div class="project-content">
+                        <h3 class="project-title">Music Generation using RNNs</h3>
+                        <p>A deep learning system for generating piano music using PyTorch, implementing an RNN architecture trained on 1200+ classical pieces from the MAESTRO dataset.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Python</span>
+                            <span class="project-tag">PyTorch</span>
+                            <span class="project-tag">RNN</span>
+                            <span class="project-tag">Deep Learning</span>
+                        </div>
+                        <div style="margin-top: 1rem;">
+                            <a href="#" class="cta-button">View Project</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <img src="/api/placeholder/300/180" alt="Computer Vision" class="project-img">
+                    <div class="project-content">
+                        <h3 class="project-title">Computer Vision for Self-Driving Car</h3>
+                        <p>A real-time YOLO-based computer vision system for autonomous vehicle object detection, successfully identifying pedestrians, animals, traffic signs, and traffic lights.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Python</span>
+                            <span class="project-tag">YOLO</span>
+                            <span class="project-tag">Computer Vision</span>
+                            <span class="project-tag">Embedded Systems</span>
+                        </div>
+                        <div style="margin-top: 1rem;">
+                            <a href="#" class="cta-button">View Project</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <img src="/api/placeholder/300/180" alt="C Systems Programming" class="project-img">
+                    <div class="project-content">
+                        <h3 class="project-title">C Systems Programming Project</h3>
+                        <p>A systems programming project simulating industry-standard operations through a 5-stage process, incorporating bit manipulation, cache optimization, and server networking protocols.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">C</span>
+                            <span class="project-tag">Systems Programming</span>
+                            <span class="project-tag">Networking</span>
+                            <span class="project-tag">Cache Optimization</span>
+                        </div>
+                        <div style="margin-top: 1rem;">
+                            <a href="#" class="cta-button">View Project</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <img src="/api/placeholder/300/180" alt="Guitar Amplification" class="project-img">
+                    <div class="project-content">
+                        <h3 class="project-title">Guitar Amplification Simulation</h3>
+                        <p>Customized Arch Linux distribution for real-time audio processing on Raspberry Pi, utilizing BASH scripting and low-level system optimization for responsive audio with 25+ audio effects.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Bash</span>
+                            <span class="project-tag">C</span>
+                            <span class="project-tag">Embedded Systems</span>
+                            <span class="project-tag">Raspberry Pi</span>
+                        </div>
+                        <div style="margin-top: 1rem;">
+                            <a href="#" class="cta-button">View Project</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="blog">
+            <h2>Blog</h2>
+            <div class="blog-posts">
+                <div class="blog-card">
+                    <img src="/api/placeholder/300/180" alt="Blog Post 1" class="blog-img">
+                    <div class="blog-content">
+                        <p class="blog-date">May 1, 2025</p>
+                        <h3 class="blog-title">Building AI-Powered Tools for Medical Diagnostics</h3>
+                        <p>Exploring the challenges and opportunities in developing machine learning solutions for healthcare applications, with insights from my work at DementiAnalytics...</p>
+                        <a href="#" class="cta-button" style="margin-top: 1rem;">Read More</a>
+                    </div>
+                </div>
+                
+                <div class="blog-card">
+                    <img src="/api/placeholder/300/180" alt="Blog Post 2" class="blog-img">
+                    <div class="blog-content">
+                        <p class="blog-date">April 15, 2025</p>
+                        <h3 class="blog-title">Computer Vision for Autonomous Vehicles</h3>
+                        <p>A deep dive into the computer vision systems we developed for the Advanced Vehicle Team that helped us secure 3rd place in the Auto Drive Challenge II...</p>
+                        <a href="#" class="cta-button" style="margin-top: 1rem;">Read More</a>
+                    </div>
+                </div>
+                
+                <div class="blog-card">
+                    <img src="/api/placeholder/300/180" alt="Blog Post 3" class="blog-img">
+                    <div class="blog-content">
+                        <p class="blog-date">March 22, 2025</p>
+                        <h3 class="blog-title">Music Generation with RNNs: Behind the Scenes</h3>
+                        <p>An in-depth look at how I trained a recurrent neural network on classical piano pieces to generate new compositions...</p>
+                        <a href="#" class="cta-button" style="margin-top: 1rem;">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="contact">
+            <h2>Contact Me</h2>
+            <div class="card">
+                <form class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 Alp Efe Karalar. All Rights Reserved.</p>
+            <div class="footer-links">
+                <a href="#about">About</a>
+                <a href="#projects">Projects</a>
+                <a href="#blog">Blog</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <p>Made with ❤️ in State College, PA</p>
+        </div>
+    </footer>
 </body>
 </html>
